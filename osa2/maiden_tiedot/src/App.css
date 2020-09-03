@@ -1,0 +1,64 @@
+html, body, #root {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+}
+
+body {
+  margin: 1em;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.flag-container {
+  max-width: 50%;
+}
+
+.flag-container > img {
+  border: 1px solid lightgray;
+  width: 100%;
+}
+
+.filter-result-wrapper {
+  display: flex;
+  padding: 1rem;
+}
+
+.filter-result-wrapper > div {
+  align-self: center;
+  margin-right: 0.5rem;
+}
+
+.filter-result-wrapper > button {
+  background-color: dodgerblue;
+  border: 1px solid cornflowerblue;
+  border-radius: 4px;
+  color: ivory;
+  cursor: pointer;
+  padding: 0.5em 1em;
+}
+
+.filter-result-wrapper > button:hover,
+.filter-result-wrapper > button:active {
+  background-color: royalblue;
+  border: 1px solid royalblue;
+}
+
+.filter-result-container {
+  border: 1px solid darkgray;
+  border-radius: 4px;
+  margin-top: 3rem;
+  max-width: 30rem;
+  padding: 1rem;
+}
+
+.filter-result-container > div:nth-child(2n):not(.flag-container) {
+  background-color: lightgray;
+}
+
+.weather-icon-container > img:not(:last-child) {
+  margin-right: 1em;
+}

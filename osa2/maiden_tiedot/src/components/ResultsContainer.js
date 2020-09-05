@@ -2,6 +2,7 @@ import React from 'react';
 import CountryInfo from './CountryInfo';
 import Results from './Results';
 
+
 const ResultsContainer = ({filterValue, filteredCountries, selectedCountry, setSelectedCountry}) => {
 
     if (!filterValue.length) {

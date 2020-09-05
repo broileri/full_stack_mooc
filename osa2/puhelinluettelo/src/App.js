@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import personService from './services/persons';
 import FilterForm from './components/FilterForm';
 import PersonForm from './components/PersonForm';
 import PersonList from './components/PersonList';
@@ -12,8 +12,8 @@ const App = () => {
     const [nameFilter, setNameFilter] = useState('');
 
     const hook = () => {
-        axios
-            .get('http://localhost:3001/persons')
+        personService
+            .getAll()
             .then(response => {
                 setPersons(response.data)
             })
@@ -35,7 +35,11 @@ const App = () => {
                 setNewNumber={setNewNumber}
             />
             <h2>Numbers</h2>
-            <PersonList persons={persons} nameFilter={nameFilter}/>
+            <PersonList
+                persons={persons}
+                setPersons={setPersons}
+                nameFilter={nameFilter}
+            />
         </div>
     );
 };

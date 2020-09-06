@@ -8,7 +8,8 @@ const PersonForm = (props) => {
         newName,
         setNewName,
         newNumber,
-        setNewNumber
+        setNewNumber,
+        setNotification,
     } = props;
 
     const addPerson = event => {
@@ -24,12 +25,13 @@ const PersonForm = (props) => {
             personService
                 .create(newPerson)
                 .then(response => {
+                    setNotification({ type: 'success', message: `Person "${response.data.name}" was added successfully!`});
                     setPersons(persons.concat(response.data));
                     setNewName('');
                     setNewNumber('');
                 })
                 .catch(error => {
-                    alert(`Could not add person "${newPerson.name}" to phonebook`);
+                    setNotification({ type: 'error', message: `Could not add person "${newPerson.name}" to phonebook!`});
                 })
         } else if (persons[index].number !== newPerson.number) {
             if (window.confirm(`"${newPerson.name}" is already added to phonebook, replace the old number with the new one?`)) {
@@ -37,17 +39,18 @@ const PersonForm = (props) => {
                     .update(persons[index].id, newPerson)
                     .then(response => {
                         const newPersons = [...persons];
+                        setNotification({ type: 'success', message: `The number of "${newPerson.name}" was updated successfully!`});
                         newPersons[index].number = response.data.number;
                         setPersons(newPersons);
                         setNewName('');
                         setNewNumber('');
                     })
                     .catch(error => {
-                        alert(`Could not update number for person "${newPerson.name}"`);
+                        setNotification({ type: 'error', message: `Could not update number for person "${newPerson.name}"!`});
                     });
             }
         } else {
-            alert(`${newPerson.name} is already added to phonebook`);
+            setNotification({ type: 'error', message: `Person "${newPerson.name}" is already added to phonebook!`});
         }
     };
 

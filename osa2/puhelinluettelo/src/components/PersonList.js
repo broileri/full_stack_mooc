@@ -1,7 +1,7 @@
 import React from 'react';
 import Person from './Person';
 
-const PersonList = ({persons, setPersons, nameFilter}) => {
+const PersonList = ({persons, setPersons, nameFilter, setNotification}) => {
     return (
         <>
             {persons.map(person => {
@@ -11,6 +11,7 @@ const PersonList = ({persons, setPersons, nameFilter}) => {
                         person={person}
                         setPersons={setPersons}
                         persons={persons}
+                        setNotification={setNotification}
                     />
                 }
                 return null;

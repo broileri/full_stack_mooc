@@ -1,7 +1,7 @@
 import React from 'react';
 import personService from '../services/persons';
 
-const Person = ({person, persons, setPersons}) => {
+const Person = ({person, persons, setPersons, setNotification}) => {
 
     const confirmDeletePerson = (person) => {
         if (window.confirm(`Delete "${person.name}"?`)) {
@@ -12,10 +12,12 @@ const Person = ({person, persons, setPersons}) => {
     const deletePerson = personToRemove => {
         personService.remove(personToRemove.id)
             .then(response => {
+                setNotification({type: 'success', message: `Person "${personToRemove.name}" was removed from phonebook!`});
                 setPersons(persons.filter(person => personToRemove.id !== person.id));
             })
             .catch(error => {
-               alert(`Could not remove person "${personToRemove.name}"`);
+                console.log(error);
+                setNotification({type: 'error', message: `Could not remove person "${personToRemove.name}"!`});
             });
     };
 
